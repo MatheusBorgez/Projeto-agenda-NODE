@@ -1,10 +1,5 @@
 
 
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
 @font-face {
   font-family: OpenSans-Regular;
   src: url('../fonts/OpenSans/OpenSans-Regular.ttf'); 
@@ -15,11 +10,6 @@
   src: url('../fonts/OpenSans/OpenSans-Bold.ttf'); 
 }
 
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
 
 * {
 	margin: 0px; 
@@ -32,7 +22,7 @@ body, html {
 	font-family: OpenSans-Regular, sans-serif;
 }
 
-/*---------------------------------------------*/
+
 a {
 	font-family: OpenSans-Regular;
 	font-size: 14px;
@@ -54,7 +44,6 @@ a:hover {
   color: #fff;
 }
 
-/*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
@@ -73,7 +62,6 @@ ul, li {
 }
 
 
-/*---------------------------------------------*/
 input {
 	outline: none;
 	border: none;
@@ -114,7 +102,6 @@ label {
   margin: 0;
 }
 
-/*---------------------------------------------*/
 button {
 	outline: none !important;
 	border: none;
@@ -129,11 +116,6 @@ iframe {
 	border: none !important;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ utility ]*/
-
-/*==================================================================
-[ Text ]*/
 .txt1 {
   font-family: OpenSans-Regular;
   font-size: 13px;
@@ -141,10 +123,6 @@ iframe {
   color: #cccccc;
 }
 
-
-
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
 .limiter {
   width: 100%;
   margin: 0 auto;
@@ -307,7 +285,19 @@ input.input100 {
   justify-content: center;
 }
 
-.login100-form-btn {
+.container-menu100-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: baseline;
+  padding-bottom: 15px;
+}
+
+.menu100-form-btn1 {
   font-family: OpenSans-Bold;
   font-size: 15px;
   color: #fff;
@@ -324,8 +314,42 @@ input.input100 {
   padding: 0 20px;
   width: 100%;
   height: 70px;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+  overflow: hidden;
+  background: #111111;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  position: relative;
+  z-index: 1;
+}
+
+.menu100-form-btn2 {
+  font-family: OpenSans-Bold;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 70px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
   overflow: hidden;
   background: #111111;
 
