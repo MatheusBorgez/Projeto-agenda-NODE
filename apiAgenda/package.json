@@ -4,8 +4,11 @@
   "description": "API para sistema de agendamento",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "index.js"
   },
   "author": "Matheus Andrade Borges",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0"
+  }
 }
