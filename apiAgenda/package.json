@@ -9,6 +9,7 @@
   "author": "Matheus Andrade Borges",
   "license": "ISC",
   "dependencies": {
-    "babel": "^6.23.0"
+    "babel": "^6.23.0",
+    "express": "^4.17.1"
   }
 }
