@@ -4,7 +4,7 @@
   "description": "API para sistema de agendamento",
   "main": "index.js",
   "scripts": {
-    "start": "index.js"
+    "start": "babel-node index.js"
   },
   "author": "Matheus Andrade Borges",
   "license": "ISC",
