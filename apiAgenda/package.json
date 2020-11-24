@@ -1,0 +1,14 @@
+{
+  "name": "apiagenda",
+  "version": "1.0.0",
+  "description": "Api de agenda ",
+  "main": "index.js",
+  "scripts": {
+    "start": "index.js"
+  },
+  "author": "Matheus Borges e Sameck Zanela",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
