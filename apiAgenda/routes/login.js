@@ -1,10 +1,10 @@
 module.exports = app => {
+
+    const Login = app.models.login;
+
     app.get("/login", (req, res) => {
-        res.json({
-            tasks: [
-                { title: "teste 1" },
-                { title: "teste 2" },
-            ]
+        Login.findAll({}, (login) => {
+            res.json({ login: login })
         });
     });
 }

@@ -4,7 +4,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const consign = require('consign');
 
-const PORT = 3333;
 const app = express();
 
 app.use(morgan('dev'));
@@ -16,7 +15,7 @@ app.set("json spaces", 4);
 
 consign()
 .include("models")
+.then("libs/middlewares.js")
 .then("routes")
+.then("libs/boot.js")
 .into(app);
-
-app.listen(PORT, () => console.log(`Api rodando na porta ${PORT} :3`));
