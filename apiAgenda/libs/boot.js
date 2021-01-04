@@ -1,9 +1,7 @@
-const PORT = app.get("port");
-
 module.exports = app => {
-    app.db.sync().done(() => {
-        app.listen(PORT, () => {
-            console.log(`Api rodando na porta ${PORT} :3`);
-        });
+    app.db.sync();
+    
+    app.listen(app.get("port"), () => {
+        console.log(`Api rodando na porta ${app.get("port")} :3`);
     });
 }
