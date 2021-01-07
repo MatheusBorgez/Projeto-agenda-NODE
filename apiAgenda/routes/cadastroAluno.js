@@ -1,6 +1,6 @@
 module.exports = app => {
 
-    const Alunos = app.db.models.Aluno;
+    const Alunos = app.db.models.aluno;
 
     app.get("/CadastroAluno", (req, res) => {
         Alunos.findAll({}).then(alunos => {

@@ -1,6 +1,8 @@
 module.exports = app => {
 
-    const Login = app.models.login;
+    console.log()
+
+    const Login = app.db.models.login;
 
     app.get("/login", (req, res) => {
         Login.findAll({}, (login) => {
