@@ -14,7 +14,7 @@ module.exports = app => {
         .post((req, res) => {
 
             Alunos.create(req.body)
-                .status(result => res.json(result))
+                .then(result => res.json(result))
                 .catch(error => {
                     res.status(412).json({ msg: error.message });
                 });
@@ -33,22 +33,22 @@ module.exports = app => {
                     }
                 })
                 .catch(error => {
-                    res.status(412).json({msg: error.message});
-                }); 
+                    res.status(412).json({ msg: error.message });
+                });
         })
         .put((req, res) => {
-            Alunos.update(result => req.body, {where: req.params})
-                  .then(result => res.sendStatus(204))
-                  .catch(error => {
-                      res.status(412).json({msg: error.message});
-                  });
+            Alunos.update(result => req.body, { where: req.params })
+                .then(result => res.sendStatus(204))
+                .catch(error => {
+                    res.status(412).json({ msg: error.message });
+                });
         })
         .delete((req, res) => {
-            Alunos.destroy({where: req.params})
-                  .then(result => res.sendStatus(204))
-                  .catch(error => {
-                      res.sendStatus(412).json({msg: error.message})
-                  });
+            Alunos.destroy({ where: req.params })
+                .then(result => res.sendStatus(204))
+                .catch(error => {
+                    res.sendStatus(412).json({ msg: error.message })
+                });
         });
 
 };

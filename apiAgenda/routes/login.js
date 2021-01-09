@@ -1,12 +1,14 @@
 module.exports = app => {
 
-    console.log()
+    const Users = app.db.models.User;
 
-    const Login = app.db.models.login;
-
-    app.get("/login", (req, res) => {
-        Login.findAll({}, (login) => {
-            res.json({ login: login })
-        });
+    app.get("/Login/:id", (req, res) => {
+        Users.findById(req.params.id, {
+            attributes: ["id", "login", "senha"]
+        })
+            .then(result => res.json(result))
+            .catch(error => {
+                res.status(412).json({ msg: error.message });
+            });
     });
 }

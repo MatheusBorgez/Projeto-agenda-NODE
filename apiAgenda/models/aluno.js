@@ -1,12 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
     const Aluno = sequelize.define("Aluno", {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-
         nome: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -17,12 +11,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            validate: { len: [0, 11] }
+            validate: { len: [0, 12] }
         },
 
         dataDeNacimento: {
             type: DataTypes.DATE,
-            allowNull: false,
             validate: { isBefore: new Date().toISOString().substring(0, 10) }
         },
 
