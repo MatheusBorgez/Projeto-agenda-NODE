@@ -12,8 +12,6 @@ module.exports = app => {
                 });
         })
         .post((req, res) => {
-            console.log(req.body);
-            console.log(Alunos);
             Alunos.create(req.body)
                 .then(result => res.json(result))
                 .catch(error => {
@@ -43,7 +41,7 @@ module.exports = app => {
                 });
         })
         .put((req, res) => {
-            Alunos.update(result => req.body, { where: req.params })
+            Alunos.update(req.body, { where: req.params })
                 .then(result => res.sendStatus(204))
                 .catch(error => {
                     res.status(412).json({ msg: error.message });
