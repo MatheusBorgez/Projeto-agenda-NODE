@@ -22,9 +22,7 @@ module.exports = app => {
         
         fs.readdirSync(dir).forEach(file => {      
             const model = require(path.join(dir, file))(sequelize, Sequelize.DataTypes);
-            
-            console.log(model.name);
-
+          
             db.models[model.name] = model;
         });
 

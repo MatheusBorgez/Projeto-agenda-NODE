@@ -1,28 +1,49 @@
 module.exports = (sequelize, DataTypes) => {
 
     const Aluno = sequelize.define("Aluno", {
+
         nome: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: { notEmpty: true }
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "id não pode ser nulo"
+                }
+            }
         },
 
         cpf: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            validate: { len: [0, 12] }
+            validate: {
+                len: {
+                    args: [0, 12],
+                    msg: "CPF em formato errado"
+                }
+            }
         },
 
         dataDeNacimento: {
-            type: DataTypes.DATE,
-            validate: { isBefore: new Date().toISOString().substring(0, 10) }
+            type: DataTypes.STRING,
+            validate: {
+                isBefore: {
+                    args: new Date().toISOString().substring(0, 10),
+                    msg: "Data inválida"
+                }
+            }
         },
 
         matricula: {
             type: DataTypes.INTEGER,
             unique: true,
-            allowNull: true
+            allowNull: false,
+            validate: {
+                notNull: {
+                    args: true, msg: "matricula não pode ser nula"
+                }
+            }
         },
 
         endereco: {
@@ -35,7 +56,12 @@ module.exports = (sequelize, DataTypes) => {
 
         email: {
             type: DataTypes.STRING,
-            validate: { isEmail: true }
+            validate: {
+                isEmail: {
+                    args: true,
+                    msg: "email em formato errado"
+                },
+            }
         }
     })
 
