@@ -12,11 +12,15 @@ module.exports = app => {
                 });
         })
         .post((req, res) => {
-
+            console.log(req.body);
+            console.log(Alunos);
             Alunos.create(req.body)
                 .then(result => res.json(result))
                 .catch(error => {
-                    res.status(412).json({ msg: error.message });
+                    res.status(412).json({
+                        msg:
+                            `${error.message}, ${error.instance}, ${error.path}, ${error.type}, ${error.type}`
+                    });
                 });
         });
 

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-    const Aluno = sequelize.define("Aluno", {
+    const Alunos = sequelize.define("Aluno", {
 
         nome: {
             type: DataTypes.STRING,
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         },
 
         dataDeNacimento: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             validate: {
                 isBefore: {
                     args: new Date().toISOString().substring(0, 10),
@@ -65,5 +65,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     })
 
-    return Aluno;
+    return Alunos;
 }
