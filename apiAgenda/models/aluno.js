@@ -25,25 +25,14 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
 
-        dataDeNacimento: {
-            type: DataTypes.DATE,
-            validate: {
-                isBefore: {
-                    args: new Date().toISOString().substring(0, 10),
-                    msg: "Data inválida"
-                }
-            }
+        dataNacimento: {
+            type: DataTypes.DATE,            
         },
 
         matricula: {
             type: DataTypes.INTEGER,
             unique: true,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    args: true, msg: "matricula não pode ser nula"
-                }
-            }
+            allowNull: false            
         },
 
         endereco: {

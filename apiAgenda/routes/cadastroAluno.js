@@ -17,6 +17,8 @@ module.exports = app => {
             Alunos.create(req.body)
                 .then(result => res.json(result))
                 .catch(error => {
+                    console.log(error);
+
                     res.status(412).json({
                         msg:
                             `${error.message}, ${error.instance}, ${error.path}, ${error.type}, ${error.type}`
