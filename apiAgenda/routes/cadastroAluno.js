@@ -3,11 +3,6 @@ module.exports = app => {
     const Alunos = app.db.models.Aluno;
 
     app.route("/cadastroAluno")
-        .all((req, res, next) => {
-
-            delete req.body.id;
-            next();
-        })
         .get((req, res) => {
 
             Alunos.findAll({})
@@ -26,11 +21,6 @@ module.exports = app => {
         });
 
     app.route("/cadastroAluno/:id")
-        .all((req, res) => {
-
-            delete req.body.id;
-            next();
-        })
         .get((req, res) => {
 
             Alunos.findOne({ where: req.params })
