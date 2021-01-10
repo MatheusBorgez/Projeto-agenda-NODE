@@ -6,10 +6,16 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true
         },
+        
         senha: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: { min: 8 }
+        },
+
+        administrador: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         }
     });
 
