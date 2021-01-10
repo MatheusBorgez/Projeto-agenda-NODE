@@ -1,35 +1,38 @@
 module.exports = (sequelize, DataTypes) => {
 
-    const Aluno = sequelize.define("Aluno", {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
+    const Alunos = sequelize.define("Aluno", {
 
         nome: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: { notEmpty: true }
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "id não pode ser nulo"
+                }
+            }
         },
 
         cpf: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            validate: { len: [0, 11] }
+            validate: {
+                len: {
+                    args: [0, 12],
+                    msg: "CPF em formato errado"
+                }
+            }
         },
 
-        dataDeNacimento: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            validate: { isBefore: new Date().toISOString().substring(0, 10) }
+        dataNacimento: {
+            type: DataTypes.DATE,            
         },
 
         matricula: {
             type: DataTypes.INTEGER,
             unique: true,
-            allowNull: true
+            allowNull: false            
         },
 
         endereco: {
@@ -42,9 +45,14 @@ module.exports = (sequelize, DataTypes) => {
 
         email: {
             type: DataTypes.STRING,
-            validate: { isEmail: true }
+            validate: {
+                isEmail: {
+                    args: true,
+                    msg: "email em formato errado"
+                },
+            }
         }
     })
 
-    return Aluno;
+    return Alunos;
 }
