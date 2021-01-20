@@ -2,7 +2,7 @@ module.exports = app => {
 
     const Alunos = app.db.models.Aluno;
 
-    app.route("/cadastroAluno")
+    app.route("/administracao")
         .get((req, res) => {
 
             Alunos.findAll({})
@@ -24,7 +24,7 @@ module.exports = app => {
                 });
         });
 
-    app.route("/cadastroAluno/:id")
+    app.route("/administracao/:id")
         .get((req, res) => {
 
             Alunos.findOne({ where: req.params })
