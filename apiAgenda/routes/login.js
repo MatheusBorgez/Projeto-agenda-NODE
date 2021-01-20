@@ -30,6 +30,7 @@ function autentiqueUsuario(Users, usuario, senha, res) {
         .then(user => {
             if (user.senha == senha) {
                 res.sendStatus(200);
+                return user;
             }
             else {
                 res.sendStatus(401);
