@@ -2,14 +2,6 @@ module.exports = app => {
 
     const Users = app.db.models.User;
 
-    app.get("/Login/:id", (req, res) => {
-        Users.findOne({ where: req.params })
-            .then(result => res.json(result))
-            .catch(error => {
-                res.status(412).json({ msg: error.message });
-            });
-    });
-
     app.post("/Login", (req, res) => {
 
         const usuario = req.body.login;
@@ -25,12 +17,11 @@ module.exports = app => {
 }
 
 function autentiqueUsuario(Users, usuario, senha, res) {
-    
+
     Users.findOne({ where: { login: usuario } })
         .then(user => {
-            if (user.senha == senha) {
-                res.sendStatus(200);
-                return user;
+            if (user.senha == senha) {                                        
+                res.send({admin: user.administrador});
             }
             else {
                 res.sendStatus(401);
