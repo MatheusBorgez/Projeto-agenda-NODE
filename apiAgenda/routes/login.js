@@ -17,12 +17,11 @@ module.exports = app => {
 }
 
 function autentiqueUsuario(Users, usuario, senha, res) {
-    
+
     Users.findOne({ where: { login: usuario } })
         .then(user => {
-            if (user.senha == senha) {
-                res.sendStatus(200);
-                return user;
+            if (user.senha == senha) {                                        
+                res.send({admin: user.administrador});
             }
             else {
                 res.sendStatus(401);
