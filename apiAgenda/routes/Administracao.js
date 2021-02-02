@@ -41,7 +41,7 @@ function obtenhaAluno(Alunos, req, res) {
 
 function excluaAluno(Alunos, req, res) {
     Alunos.destroy({ where: req.params })
-        .then(result => res.sendStatus(204))
+        .then(result => res.sendStatus(201))
         .catch(error => {
             envieMensagemErro(res, error);
         });
@@ -49,20 +49,22 @@ function excluaAluno(Alunos, req, res) {
 
 function atualizeAluno(Alunos, req, res) {
     Alunos.update(req.body, { where: req.params })
-        .then(result => res.sendStatus(204))
+        .then(result => res.sendStatus(201))
         .catch(error => {
             envieMensagemErro(res, error);
         });
 }
 
 function insiraAluno(Alunos, Users, req, res) {
+
     Alunos.create(req.body)
         .then(result => {
             res.sendStatus(201);
             res.json(result);
         })
         .catch(error => {
-            envieMensagemErro(res, error);
+            res.sendStatus(404);
+            //envieMensagemErro(res, error);
         });
 
     Users.create({
