@@ -41,7 +41,7 @@ function obtenhaAluno(Alunos, req, res) {
 
 function excluaAluno(Alunos, req, res) {
     Alunos.destroy({ where: req.params })
-        .then(result => res.sendStatus(204))
+        .then(result => res.sendStatus(201))
         .catch(error => {
             envieMensagemErro(res, error);
         });
@@ -49,47 +49,49 @@ function excluaAluno(Alunos, req, res) {
 
 function atualizeAluno(Alunos, req, res) {
     Alunos.update(req.body, { where: req.params })
-        .then(result => res.sendStatus(204))
+        .then(result => res.sendStatus(201))
         .catch(error => {
             envieMensagemErro(res, error);
         });
 }
 
 function insiraAluno(Alunos, Users, req, res) {
+
     Alunos.create(req.body)
         .then(result => {
-        res.sendStatus(201); 
-        res.json(result);
+            res.sendStatus(201);
+            res.json(result);
         })
         .catch(error => {
-            envieMensagemErro(res, error);
+            res.sendStatus(404);
+            //envieMensagemErro(res, error);
         });
-    
+
     Users.create({
         login: req.body.cpf,
         senha: req.body.cpf,
         administrador: false
     })
-    .then(result => {
-        res.sendStatus(201); 
-        res.json(result);
-    })
-    .catch(error => {
-        envieMensagemErro(res, error);
-    });
-    
+        .then(result => {
+            res.sendStatus(201);
+            res.json(result);
+        })
+        .catch(error => {
+            envieMensagemErro(res, error);
+        });
+
 }
 
 function obtenhaTodosAlunos(Alunos, res) {
     Alunos.findAll({})
-    .then(result => res.json(result))
-    .catch(error => {
-        envieMensagemErro(res, error);
-    });
+        .then(result => res.json({ alunos: result }))
+        .catch(error => {
+            envieMensagemErro(res, error);
+        });
 }
 
 function envieMensagemErro(res, error) {
     res.status(412).json({
-        msg: `${error.message}, ${error.instance}, ${error.path}, ${error.type}, ${error.type}`
+        msg: `${error.message}, ${error.instance}, ${error.path}, ${error.type}`
     });
 }
