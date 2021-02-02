@@ -21,7 +21,10 @@ function autentiqueUsuario(Users, usuario, senha, res) {
     Users.findOne({ where: { login: usuario } })
         .then(user => {
             if (user.senha == senha) {                                        
-                res.send({admin: user.administrador});
+                res.send({
+                    admin: user.administrador,
+                    login: user.login
+                });
             }
             else {
                 res.sendStatus(401);

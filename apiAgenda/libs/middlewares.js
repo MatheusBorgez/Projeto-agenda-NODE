@@ -10,7 +10,7 @@ module.exports = app =>{
         allowedHeaders: ["Contet-Type", "Authorization"]
     }));
     app.use(bodyParser.json());
-    app.use((req, res, next) => {
+    app.use((req, res, next) => {        
         delete req.body.id;
         next();
     });
