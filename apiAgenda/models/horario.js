@@ -13,12 +13,11 @@ module.exports = (sequelize, DataTypes) => {
 
         idAluno: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
+            allowNull: false
         },
 
         diaSemana: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },

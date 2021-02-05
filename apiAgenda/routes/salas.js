@@ -5,19 +5,21 @@ module.exports = app => {
     app.route("/sala/:id/:sala")
         .get((req, res) => {
             obtenhaHorariosAluno(Horarios, req, res);
-        })
-        .post((req, res) => {
+        });
+
+    app.post("/sala", (req, res) => {
             insiraOuAtualize(Horarios, req, res);
-        })
-
-
+        });
 
 }
 
 function insiraOuAtualize(Horarios, req, res) {
+
+    console.log(req.body);
+
     Horarios.findOne({
         where: {
-            idAluno: req.body.id,
+            idAluno: req.body.idAluno,
             sala: req.body.sala
         }
     })
@@ -41,14 +43,16 @@ function atualizeHorarios(Horarios, req, res) {
                 idAluno: horario.id,
                 sala: horario.sala
             }
-        });
+        })
+        .then(res.sendStatus(203));
     });
 }
 
 function insiraHorarios(Horarios, req, res) {
 
-    req.body.horarios.forEach(horario => {
-        Horarios.create(horario);
+    req.body.forEach(horario => {
+        Horarios.create(req.body)
+                .then(res.sendStatus(201));                
     });
 }
 
