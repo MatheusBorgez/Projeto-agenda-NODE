@@ -1,12 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Horario = sequelize.define("Horario", {
 
-        inicio: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
-        fim: {
+        faixaHorario: {
             type: DataTypes.STRING,
             allowNull: false
         },
