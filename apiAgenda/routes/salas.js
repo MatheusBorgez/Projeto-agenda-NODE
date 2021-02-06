@@ -1,5 +1,4 @@
 module.exports = app => {
-    const Alunos = app.db.models.Aluno;
     const Horarios = app.db.models.Horario;
 
     app.route("/sala/:id/:sala")
@@ -10,18 +9,16 @@ module.exports = app => {
     app.post("/sala", (req, res) => {
         insiraOuAtualize(Horarios, req, res);
     });
-
 }
 
 function insiraOuAtualize(Horarios, req, res) {
-
     Horarios.findOne({
         where: {
-            idAluno: req.body.horarios[0].idAluno,
-            sala: req.body.horarios[0].sala
+            idAluno: req.body.idAluno,
+            sala: req.body.sala
         }
     })
-        .then((result) => {
+        .then((result) => {            
 
             if (result) {
                 atualizeHorarios(Horarios, req, res);
@@ -32,30 +29,26 @@ function insiraOuAtualize(Horarios, req, res) {
         })
         .catch(error => {
             console.log(`${error.message}, ${error.instance}, ${error.path}, ${error.type}`);
-            envieMensagemErro(res, error);
+            return envieMensagemErro(res, error);
         });
 }
 
 function atualizeHorarios(Horarios, req, res) {
-
-    req.body.horarios.forEach(horario => {
-        Horarios.update(horario, {
-            where: {
-                idAluno: horario.id,
-                sala: horario.sala
-            }
-        })
-            .then(res.sendStatus(203));
-    });
+    Horarios.update(req.body, {
+        where: {
+            idAluno: req.body.idAluno,
+            diaSemana: req.body.diaSemana,
+            sala: req.body.sala
+        }
+    })
+    .then(result =>  res.sendStatus(201))
+    .catch(error => envieMensagemErro(res, error));
 }
 
 function insiraHorarios(Horarios, req, res) {
-
-    req.body.horarios.forEach(horario => {
-        Horarios.create(horario)
-            .then(res.sendStatus(201))
-            .catch(error => envieMensagemErro(res, error));
-    });
+    Horarios.create(req.body)
+    .then(result =>  res.sendStatus(201))
+    .catch(error => envieMensagemErro(res, error));
 }
 
 function obtenhaHorariosAluno(Horarios, req, res) {
@@ -64,12 +57,13 @@ function obtenhaHorariosAluno(Horarios, req, res) {
         .catch(error => {
             envieMensagemErro(res, error);
         });
-
 }
 
 function envieMensagemErro(res, error) {
 
-    res.status(412).json({
+    console.log(`${error.message}, ${error.instance}, ${error.path}, ${error.type}`);
+
+    return res.status(412).json({
         msg: `${error.message}, ${error.instance}, ${error.path}, ${error.type}`
     });
 }
