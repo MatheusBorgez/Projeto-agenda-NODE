@@ -13,8 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 
         diaSemana: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
         },
 
         sala: {

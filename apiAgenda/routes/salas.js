@@ -1,7 +1,7 @@
 module.exports = app => {
     const Horarios = app.db.models.Horario;
 
-    app.route("/sala/:id/:sala")
+    app.route("/sala/:idAluno/:sala")
         .get((req, res) => {
             obtenhaHorariosAluno(Horarios, req, res);
         });
@@ -12,6 +12,10 @@ module.exports = app => {
 }
 
 function insiraOuAtualize(Horarios, req, res) {
+
+    console.log(`${req.body.idAluno}`);
+    console.log(`${req.body.sala}`);
+
     Horarios.findOne({
         where: {
             idAluno: req.body.idAluno,
@@ -19,7 +23,6 @@ function insiraOuAtualize(Horarios, req, res) {
         }
     })
         .then((result) => {            
-
             if (result) {
                 atualizeHorarios(Horarios, req, res);
             }
@@ -46,14 +49,21 @@ function atualizeHorarios(Horarios, req, res) {
 }
 
 function insiraHorarios(Horarios, req, res) {
+
+    console.log(req.body);
+
     Horarios.create(req.body)
     .then(result =>  res.sendStatus(201))
     .catch(error => envieMensagemErro(res, error));
 }
 
 function obtenhaHorariosAluno(Horarios, req, res) {
+
     Horarios.findAll({ where: req.params })
-        .then(result => res.json({ horarios: result }))
+        .then(result => {
+            res.json({ horarios: result });
+            console.log(result);
+            })
         .catch(error => {
             envieMensagemErro(res, error);
         });
