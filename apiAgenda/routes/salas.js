@@ -49,9 +49,6 @@ function atualizeHorarios(Horarios, req, res) {
 }
 
 function insiraHorarios(Horarios, req, res) {
-
-    console.log(req.body);
-
     Horarios.create(req.body)
     .then(result =>  res.sendStatus(201))
     .catch(error => envieMensagemErro(res, error));
@@ -62,7 +59,6 @@ function obtenhaHorariosAluno(Horarios, req, res) {
     Horarios.findAll({ where: req.params })
         .then(result => {
             res.json({ horarios: result });
-            console.log(result);
             })
         .catch(error => {
             envieMensagemErro(res, error);
