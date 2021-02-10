@@ -2,6 +2,7 @@ module.exports = app => {
 
     const Alunos = app.db.models.Aluno;
     const Users = app.db.models.User;
+    const op = app.db.Sequelize;
 
     app.route("/administracao")
         .get((req, res) => {
@@ -23,7 +24,26 @@ module.exports = app => {
             excluaAluno(Alunos, req, res);
         });
 
+    app.get("/administracao/busca/:termoBusca", (req, res) => {
+        let termoBusca = req.params.termoBusca
+        filtreAlunos(Alunos, termoBusca, res, op);
+    })
+
 };
+
+function filtreAlunos(Alunos, termoPesquisa, res, op) {
+    const { Op } = require("sequelize");
+
+    Alunos.findAll({
+        where: {
+            nome: {
+                [Op.like]: `%${termoPesquisa}%`
+            }
+        }
+    })
+        .then(result => res.json({ alunos: result }))
+        .catch(error => envieMensagemErro(res, error));
+}
 
 function obtenhaAluno(Alunos, req, res) {
     Alunos.findOne({ where: req.params })
