@@ -20,7 +20,7 @@ module.exports = app => {
             atualizeAluno(Alunos, req, res);
         })
         .delete((req, res) => {
-            res.setHeader('Access-Control-Allow-Origin', '*');
+            req.setHeader('Access-Control-Allow-Origin', '*');
             excluaAluno(Alunos, req, res);
         });
 

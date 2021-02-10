@@ -1,7 +1,7 @@
 module.exports = app => {
     const Horarios = app.db.models.Horario;
 
-    app.route("/sala/:id/:sala")
+    app.route("/sala/:idAluno/:sala")
         .get((req, res) => {
             obtenhaHorariosAluno(Horarios, req, res);
         });
@@ -19,7 +19,6 @@ function insiraOuAtualize(Horarios, req, res) {
         }
     })
         .then((result) => {            
-
             if (result) {
                 atualizeHorarios(Horarios, req, res);
             }
@@ -52,8 +51,11 @@ function insiraHorarios(Horarios, req, res) {
 }
 
 function obtenhaHorariosAluno(Horarios, req, res) {
+
     Horarios.findAll({ where: req.params })
-        .then(result => res.json({ horarios: result }))
+        .then(result => {
+            res.json({ horarios: result });
+            })
         .catch(error => {
             envieMensagemErro(res, error);
         });
