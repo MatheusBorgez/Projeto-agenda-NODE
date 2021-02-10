@@ -12,10 +12,6 @@ module.exports = app => {
 }
 
 function insiraOuAtualize(Horarios, req, res) {
-
-    console.log(`${req.body.idAluno}`);
-    console.log(`${req.body.sala}`);
-
     Horarios.findOne({
         where: {
             idAluno: req.body.idAluno,
