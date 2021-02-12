@@ -19,10 +19,13 @@ module.exports = app => {
         .put((req, res) => {
             atualizeAluno(Alunos, req, res);
         })
-        .delete((req, res) => {
-            req.setHeader('Access-Control-Allow-Origin', '*');
+        .delete((req, res) => {            
             excluaAluno(Alunos, req, res);
         });
+
+    app.get("/administracao/delete/:id", (req, res) => {
+        excluaAluno(Alunos, req, res);
+    });
 
     app.get("/administracao/busca/:termoBusca", (req, res) => {
         let termoBusca = req.params.termoBusca
@@ -61,6 +64,7 @@ function obtenhaAluno(Alunos, req, res) {
 }
 
 function excluaAluno(Alunos, req, res) {
+
     Alunos.destroy({ where: req.params })
         .then(result => res.sendStatus(201))
         .catch(error => {
